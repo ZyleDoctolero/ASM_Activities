@@ -27,10 +27,10 @@ _start:
     int 80h
 
 section .data
-    art_pattern db '  *  ', 10
-                db ' *** ', 10
-                db '*****', 10
-                db ' *** ', 10
-                db '  *  ', 0
+    art_pattern db '  ***  ', 10
+                db ' ***** ', 10
+                db '**   **', 10
+                db ' ***** ', 10
+                db '  ***  ', 0
     art_size equ $ - art_pattern
 
