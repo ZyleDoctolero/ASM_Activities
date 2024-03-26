@@ -7,18 +7,18 @@ section .text
     global _start
 
 _start:
-    mov eax, 3          ; sys_read syscall
-    mov ebx, 0          ; stdin
-    mov ecx, charter    ; buffer to read
-    mov edx, 1          ; number of bytes to read
-    int 0x80            ; call kernel
+    mov eax, 3         
+    mov ebx, 0         
+    mov ecx, charter   
+    mov edx, 1          
+    int 0x80           
 
     cmp byte [charter], 'a'
     jl not_lower
     cmp byte [charter], 'z'
     jg not_lower
 
-    sub byte [charter], 0x20    ; convert lowercase to uppercase
+    sub byte [charter], 0x20    
     jmp print_char
 
 not_lower:
@@ -27,23 +27,23 @@ not_lower:
     cmp byte [charter], 'Z'
     jg print_char
 
-    add byte [charter], 0x20    ; convert uppercase to lowercase 
+    add byte [charter], 0x20     
 
 print_char:
-    mov eax, 4          ; sys_write syscall
-    mov ebx, 1          ; stdout
-    mov ecx, charter    ; buffer to write
-    mov edx, 1          ; number of bytes to write
-    int 0x80            ; call kernel
+    mov eax, 4          
+    mov ebx, 1         
+    mov ecx, charter    
+    mov edx, 1         
+    int 0x80           
 
     ; Print newline character
-    mov eax, 4          ; sys_write syscall
-    mov ebx, 1          ; stdout
-    mov ecx, newline    ; buffer to write
-    mov edx, 1          ; number of bytes to write
-    int 0x80            ; call kernel
+    mov eax, 4          
+    mov ebx, 1         
+    mov ecx, newline   
+    mov edx, 1        
+    int 0x80          
 
     ; Exit program
-    mov eax, 1          ; sys_exit syscall
-    xor ebx, ebx        ; exit code 0
-    int 0x80            ; call kernel
+    mov eax, 1          
+    xor ebx, ebx        
+    int 0x80          
